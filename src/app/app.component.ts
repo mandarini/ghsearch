@@ -8,8 +8,7 @@ import { SearchService } from './search.service';
 })
 export class AppComponent implements OnInit {
   title = 'ghsearch';
-  users: any[];
-  result: Object;
+  users: Object;
 
   constructor(private search: SearchService) { }
 
@@ -20,8 +19,7 @@ export class AppComponent implements OnInit {
   getUsers(): void {
     this.search.users('katerina', 3, 43)
     .subscribe(result => {
-      this.result = result;
-      this.users = result.items;
+      this.users = result;
     });
   }
 }

@@ -13,12 +13,12 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  users (name: string, page?: number, perpage?: number): Observable<any[]> {
+  users (name: string, page?: number, perpage?: number): Observable<Object> {
     console.log('searching now');
-    return this.http.get<any[]>(`${this.searchUrl}?q=${name}&page=${page}&per_page=${perpage}`)
+    return this.http.get<Object>(`${this.searchUrl}?q=${name}&page=${page}&per_page=${perpage}`)
       .pipe(
         tap(users => console.log(users)),
-        catchError(this.handleError('search users', []))
+        catchError(this.handleError('search users', {}))
       );
   }
 
@@ -34,4 +34,5 @@ export class SearchService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+}
 }

@@ -15,19 +15,20 @@ import {
 })
 export class SearchboxComponent implements OnInit {
 
-  users$: Observable<Object>;
-  private searchTerms = new Subject<string>();
+  users$: Observable<any>;
+  private searchTerms$ = new Subject<string>();
 
   constructor(private searchService: SearchService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
-    console.log('tpuing', term);
-    this.searchTerms.next(term);
+    // this.searchService.users(term, 1, 10);
+    console.log('typing', term);
+    this.searchTerms$.next(term);
   }
 
   ngOnInit(): void {
-    this.users$ = this.searchTerms.pipe(
+    this.users$ = this.searchTerms$.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
 
@@ -35,7 +36,7 @@ export class SearchboxComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.searchService.users(term, 1, 10)),
+      switchMap((term: string) => this.searchService.users(term, 1, 10))
     );
   }
 
