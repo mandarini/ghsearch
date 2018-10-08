@@ -1,10 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SearchService } from './search.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ghsearch';
+  users: any[];
+  result: Object;
+
+  constructor(private search: SearchService) { }
+
+  ngOnInit() {
+    // this.getUsers();
+  }
+
+  getUsers(): void {
+    this.search.users('katerina', 3, 43)
+    .subscribe(result => {
+      this.result = result;
+      this.users = result.items;
+    });
+  }
 }

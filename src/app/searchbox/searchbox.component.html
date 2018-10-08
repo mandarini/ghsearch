@@ -1,0 +1,7 @@
+<input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+
+<ul class="search-result">
+    <li *ngFor="let user of users$.items | async" >
+        {{user.login}}
+    </li>
+  </ul>
