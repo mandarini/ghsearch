@@ -7,12 +7,14 @@ import { SearchboxComponent } from './searchbox/searchbox.component';
 
 import { RouterModule, Routes }  from '@angular/router';
 import { PaginationComponent } from './pagination/pagination.component';
+import { PerpageComponent } from './perpage/perpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchboxComponent,
     PaginationComponent,
+    PerpageComponent,
   ],
   imports: [
     BrowserModule,

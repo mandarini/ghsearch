@@ -13,13 +13,13 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
-  users(name: string, page?: number, perpage?: number): Observable<Users> {
+  users(name: string, page?: string, perpage?: string): Observable<Users> {
     // name = name.trim();
     console.log("searching now");
     let httpParams = new HttpParams().set("q", name);
-    httpParams = page ? httpParams.append("page", page.toString()) : httpParams;
+    httpParams = page ? httpParams.append("page", page) : httpParams;
     httpParams = perpage
-      ? httpParams.append("per_page", perpage.toString())
+      ? httpParams.append("per_page", perpage)
       : httpParams;
     return this.http.get<Users>(this.searchUrl, { params: httpParams }).pipe(
       tap(users => console.log(users)),

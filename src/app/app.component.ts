@@ -11,9 +11,11 @@ import { Users } from "./users";
 })
 export class AppComponent  {
   title = "ghsearch";
+  placeholder = "Search userss";
   users: Users;
   total_pages: number;
   query: string;
+
 
   constructor(
     private search: SearchService,
@@ -23,18 +25,19 @@ export class AppComponent  {
     this.route.queryParamMap.subscribe(params => {
       console.log(params);
       if (params.has("q")) {
-      this.query=params.get("q");
-      this.doSearch(params.get("q"));
+        this.query=params.get("q");
+        this.doSearch(params.get("q"), params.has("page") ? params.get("page") : null);
       }
     });
   }
 
   ngOnInit() {}
 
-  doSearch(name: string, page?: number, perpage?: number) {
+  doSearch(name: string, page?: string, perpage?: string) {
+    this.placeholder  = name;
     this.search.users(name, page, perpage).subscribe(result => {
       this.users = result; 
-      this.total_pages =  Math.floor(result.total_count/(perpage?perpage : 30));
+      this.total_pages =  Math.floor(result.total_count/(perpage ? parseInt(perpage) : 30));
       console.log(perpage)
     });
   }
@@ -45,6 +48,10 @@ export class AppComponent  {
 
   onPage(page: number) {
     this.router.navigate(["/"],  { queryParams: { q: this.query , page: page} })
+  }
+
+  onPerPage(perpage: number) {
+    this.doSearch(this.query, '1', perpage.toString());
   }
   
 }
