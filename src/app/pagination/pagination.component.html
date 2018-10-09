@@ -1,4 +1,8 @@
-  <div *ngFor="let item of array(total)" (click)="search(item)"><span *ngIf="item > 0">{{item}}</span><span *ngIf="item < 0">...</span></div>
+<button [disabled]="current === 1" (click)="search(current-1)">Previous</button>
+<button *ngFor="let item of array(total)" (click)="search(item)" [disabled]="item < 0">
+  <span *ngIf="item > 0">{{item}}</span><span *ngIf="item < 0">...</span>
+</button>
+<button [disabled]="current === total" (click)="search(current+1)">Next</button>
 <p>
   total pages: {{total}}
 </p>

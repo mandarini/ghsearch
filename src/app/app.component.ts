@@ -14,6 +14,7 @@ export class AppComponent  {
   placeholder = "Search userss";
   users: Users;
   total_pages: number;
+  current_page: number;
   query: string;
   error: boolean;
 
@@ -28,6 +29,7 @@ export class AppComponent  {
       console.log(params);
       if (params.has("q")) {
         this.query=params.get("q");
+        this.current_page = params.has("page") ? parseInt(params.get("page")) : 1;
         this.doSearch(params.get("q"), params.has("page") ? params.get("page") : null);
       }
     });

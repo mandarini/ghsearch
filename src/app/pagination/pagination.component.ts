@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class PaginationComponent {
 
   @Input() total: number;
+  @Input() current: number;
   @Output() paged = new EventEmitter<number>();
  
   search(page: number) {

@@ -11,4 +11,4 @@
       {{user.login}}
   </li>
 </ul>
-<app-pagination [total]="total_pages" (paged)="onPage($event)"></app-pagination>
+<app-pagination [total]="total_pages" (paged)="onPage($event)" [current]="current_page"></app-pagination>
