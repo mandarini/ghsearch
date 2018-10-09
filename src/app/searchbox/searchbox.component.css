@@ -4,3 +4,13 @@
 
 .results {
 }
+
+.searchbox input {
+padding: 10px 16px;
+border-radius: 3px;
+border: 1px solid #bababa;
+}
+
+.searchbox button {
+    margin-left: 8px;
+}
