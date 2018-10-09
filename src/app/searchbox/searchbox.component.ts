@@ -17,10 +17,4 @@ export class SearchboxComponent {
   }
 
   constructor(private searchService: SearchService) {}
-
-  onKey(event: any, name: string) {
-    if (event.keyCode === 13) {
-      this.search(name);
-    }
-  }
 }
