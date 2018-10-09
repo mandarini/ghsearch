@@ -1,2 +1,5 @@
-<app-searchbox (searched)="onSearch($event)"></app-searchbox>
-<app-results></app-results>
+<div class="app-container" [ngClass]="{'no-results': !didSearch, 'results': didSearch}">
+    <app-searchbox (searched)="onSearch($event)" [didSearch]="didSearch"></app-searchbox>
+    <button (click)="clear()" *ngIf="didSearch">clear results</button>
+    <app-results *ngIf="didSearch"></app-results>
+</div>

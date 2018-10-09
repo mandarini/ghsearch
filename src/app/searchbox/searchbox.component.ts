@@ -8,7 +8,8 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
 export class SearchboxComponent {
 
   @Output() searched = new EventEmitter<string>();
- 
+  @Input() didSearch: boolean; 
+
   search(name: string) {
     this.searched.emit(name);
   }

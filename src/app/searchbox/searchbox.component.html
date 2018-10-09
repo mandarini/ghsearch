@@ -1,4 +1,6 @@
-<input #searchBox id="search-box" name="search-box" type="text" placeholder="Search Users" (keyup.enter)="search(searchBox.value)">
-<button (click)="search(searchBox.value)">
-    Search
-</button>
+<div [ngClass]="{'no-results': !didSearch, 'results': didSearch}">
+    <input #searchBox id="search-box" name="search-box" type="text" placeholder="Search Users" (keyup.enter)="search(searchBox.value)">
+    <button (click)="search(searchBox.value)">
+        Search
+    </button>
+</div>
