@@ -12,6 +12,8 @@ import { Users } from "./users";
 export class AppComponent  {
   title = "ghsearch";
   users: Users;
+  total_pages: number;
+  query: string;
 
   constructor(
     private search: SearchService,
@@ -21,7 +23,8 @@ export class AppComponent  {
     this.route.queryParamMap.subscribe(params => {
       console.log(params);
       if (params.has("q")) {
-        this.doSearch(params.get("q"));
+      this.query=params.get("q");
+      this.doSearch(params.get("q"));
       }
     });
   }
@@ -30,7 +33,9 @@ export class AppComponent  {
 
   doSearch(name: string, page?: number, perpage?: number) {
     this.search.users(name, page, perpage).subscribe(result => {
-      this.users = result;
+      this.users = result; 
+      this.total_pages =  Math.floor(result.total_count/(perpage?perpage : 30));
+      console.log(perpage)
     });
   }
 
@@ -38,4 +43,8 @@ export class AppComponent  {
     this.router.navigate(["/"], { queryParams: { q: name } });
   }
 
+  onPage(page: number) {
+    this.router.navigate(["/"],  { queryParams: { q: this.query , page: page} })
+  }
+  
 }

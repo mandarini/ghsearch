@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { SearchboxComponent } from './searchbox/searchbox.component';
 
 import { RouterModule, Routes }  from '@angular/router';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchboxComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
