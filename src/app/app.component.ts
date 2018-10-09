@@ -15,6 +15,7 @@ export class AppComponent  {
   users: Users;
   total_pages: number;
   query: string;
+  error: boolean;
 
 
   constructor(
@@ -22,6 +23,7 @@ export class AppComponent  {
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.error = false;
     this.route.queryParamMap.subscribe(params => {
       console.log(params);
       if (params.has("q")) {
@@ -36,9 +38,14 @@ export class AppComponent  {
   doSearch(name: string, page?: string, perpage?: string) {
     this.placeholder  = name;
     this.search.users(name, page, perpage).subscribe(result => {
-      this.users = result; 
-      this.total_pages =  Math.floor(result.total_count/(perpage ? parseInt(perpage) : 30));
-      console.log(perpage)
+      console.log('thisis what i get', result);
+      if (result) {
+        this.users = result; 
+        this.total_pages =  Math.floor(result.total_count/(perpage ? parseInt(perpage) : 30));  
+        this.error = false;
+      } else {
+        this.error = true;
+      }
     });
   }
 
