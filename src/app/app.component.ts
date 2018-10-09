@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { SearchService } from "./search.service";
 import { Observable } from "rxjs";
+import { Users } from "./users";
 
 @Component({
   selector: "app-root",
@@ -10,8 +11,7 @@ import { Observable } from "rxjs";
 })
 export class AppComponent  {
   title = "ghsearch";
-  users: Object;
-  users$: Observable<Object>;
+  users: Users;
 
   constructor(
     private search: SearchService,
