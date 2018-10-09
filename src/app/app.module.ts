@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { SearchboxComponent } from './searchbox/searchbox.component';
 import { SearchComponent } from './search/search.component';
 
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes }  from '@angular/router';
+
+// import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    RouterModule.forRoot([])
+    // AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

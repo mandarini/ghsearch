@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { SearchService } from "../search.service";
-import { switchMap } from "rxjs/operators";
 import { Observable } from "rxjs";
 
 @Component({
@@ -18,13 +17,6 @@ export class SearchComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    // this.route.paramMap.pipe(
-    //   switchMap(params => {
-    //     // (+) before `params.get()` turns the string into a number
-    //     // this.selectedId = +params.get('id');
-    //   })
-    // );
-
     this.route.queryParamMap.subscribe(params => {
       console.log(params);
       if (params.has("q")) {
