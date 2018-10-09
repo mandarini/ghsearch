@@ -3,11 +3,10 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<h2>Results </h2>
-<!-- <ul>
+<app-searchbox (searched)="onSearch($event)"></app-searchbox>
+<h2>Total Results: {{users?.total_count}} </h2>
+<ul>
   <li *ngFor="let user of users?.items">
       {{user.login}}
   </li>
-</ul> -->
-<app-searchbox></app-searchbox>
-
+</ul>

@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
     // this.getUsers();
   }
 
-  getUsers(): void {
-    this.search.users('katerina', 3, 43)
+  onSearch(name: string, page?: number, perpage?: number) {
+    this.search.users(name, page, perpage)
     .subscribe(result => {
       this.users = result;
     });

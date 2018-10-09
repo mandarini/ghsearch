@@ -1,30 +1,33 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpParams } from "@angular/common/http";
 
-import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Observable, of } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class SearchService {
- 
-  private searchUrl = 'https://api.github.com/search/users';
+  private searchUrl = "https://api.github.com/search/users";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  users (name: string, page?: number, perpage?: number): Observable<Object> {
-    console.log('searching now');
-    return this.http.get<Object>(`${this.searchUrl}?q=${name}&page=${page}&per_page=${perpage}`)
-      .pipe(
-        tap(users => console.log(users)),
-        catchError(this.handleError('search users', {}))
-      );
+  users(name: string, page?: number, perpage?: number): Observable<Object> {
+    name = name.trim();
+    console.log("searching now");
+    let httpParams = new HttpParams().set("q", name);
+    httpParams = page ? httpParams.append("page", page.toString()) : httpParams;
+    httpParams = perpage
+      ? httpParams.append("per_page", perpage.toString())
+      : httpParams;
+    return this.http.get<Object>(this.searchUrl, { params: httpParams }).pipe(
+      tap(users => console.log(users)),
+      catchError(this.handleError("search users", {}))
+    );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
-
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
@@ -34,5 +37,5 @@ export class SearchService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-}
+  }
 }
