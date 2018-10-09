@@ -1,0 +1,6 @@
+<h2>Total Results: {{users?.total_count}} </h2>
+<app-perpage (perpaged)="onPerPage($event)"></app-perpage>
+<div class="user-container">
+  <app-user *ngFor="let user of users?.items" [user]="user"></app-user>
+</div>
+<app-pagination [total]="total_pages" (paged)="onPage($event)" [current]="current_page"></app-pagination>

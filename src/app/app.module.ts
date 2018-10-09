@@ -8,6 +8,8 @@ import { SearchboxComponent } from './searchbox/searchbox.component';
 import { RouterModule, Routes }  from '@angular/router';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PerpageComponent } from './perpage/perpage.component';
+import { UserComponent } from './user/user.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { PerpageComponent } from './perpage/perpage.component';
     SearchboxComponent,
     PaginationComponent,
     PerpageComponent,
+    UserComponent,
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,

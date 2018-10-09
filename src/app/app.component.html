@@ -1,14 +1,2 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
 <app-searchbox (searched)="onSearch($event)"></app-searchbox>
-<h2>Total Results: {{users?.total_count}} </h2>
-<app-perpage (perpaged)="onPerPage($event)"></app-perpage>
-<ul>
-  <li *ngFor="let user of users?.items">
-      {{user.login}}
-  </li>
-</ul>
-<app-pagination [total]="total_pages" (paged)="onPage($event)" [current]="current_page"></app-pagination>
+<app-results></app-results>
