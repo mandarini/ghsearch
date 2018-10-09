@@ -1,9 +1,9 @@
 .user {
-    border: 1px solid #bbbbbb;
-    border-radius: 5px;
- display: flex;
- flex-direction: row;
- margin-bottom: 10px;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
 }
 
 .user img {
