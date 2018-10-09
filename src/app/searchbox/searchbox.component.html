@@ -1,4 +1,4 @@
-<input #searchBox id="search-box" name="search-box" type="text" placeholder="Search users" (keyup)="onKey($event, searchBox.value)">
+<input #searchBox id="search-box" name="search-box" type="text" placeholder="Search users" (keyup.enter)="search(searchBox.value)">
 <button (click)="search(searchBox.value)">
     Search
 </button>
