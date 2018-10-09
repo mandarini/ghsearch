@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  Input,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
 
 @Component({
   selector: "app-searchbox",
@@ -6,13 +13,15 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
   styleUrls: ["./searchbox.component.css"]
 })
 export class SearchboxComponent {
-
-  @Output() searched = new EventEmitter<string>();
-  @Input() didSearch: boolean; 
+  @Output()
+  searched = new EventEmitter<string>();
+  @Input()
+  didSearch: boolean;
 
   search(name: string) {
     this.searched.emit(name);
   }
 
   constructor() {}
+
 }

@@ -17,6 +17,7 @@ export class ResultsComponent implements OnInit {
   current_page: number;
   query: string;
   error: boolean;
+  ready: boolean;
 
   constructor(
     private search: SearchService,
@@ -24,6 +25,7 @@ export class ResultsComponent implements OnInit {
     private router: Router
   ) {
     this.error = false;
+    this.ready = false;
 
     /***
      * The way I am implementing my search is this:
@@ -83,6 +85,7 @@ export class ResultsComponent implements OnInit {
           result.total_count / (perpage ? parseInt(perpage) : 30)
         );
         this.error = false;
+        this.ready = true;
       } else {
         this.error = true;
       }
@@ -105,5 +108,15 @@ export class ResultsComponent implements OnInit {
 
   onPerPage(perpage: number) {
     this.doSearch(this.query, "1", perpage.toString());
+  }
+
+  goBack() {
+    this.router.navigate(["/"], { queryParams: { q: this.query, page: 1 } });  
+  }
+
+  clear() {
+    this.ready = false;
+    this.query = '';
+    this.router.navigate(["/"]);
   }
 }

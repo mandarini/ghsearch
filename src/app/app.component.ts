@@ -22,8 +22,4 @@ export class AppComponent {
     this.router.navigate(["/"], { queryParams: { q: name } });
   }
 
-  clear() {
-    this.didSearch = false;
-    this.router.navigate(["/"]);
-  }
 }

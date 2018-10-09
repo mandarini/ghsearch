@@ -1,6 +1,23 @@
-<h2>Total Results: {{users?.total_count}} </h2>
-<app-perpage (perpaged)="onPerPage($event)"></app-perpage>
-<div class="user-container">
-  <app-user *ngFor="let user of users?.items" [user]="user"></app-user>
+<div *ngIf="!error && ready">
+  <button (click)="clear()">Clear</button>
+  <div *ngIf="users?.total_count>0">
+    <h2>Total Results: {{users?.total_count}} </h2>
+    <app-perpage (perpaged)="onPerPage($event)"></app-perpage>
+    <div class="user-container">
+      <app-user *ngFor="let user of users?.items" [user]="user"></app-user>
+    </div>
+    <app-pagination [total]="total_pages" (paged)="onPage($event)" [current]="current_page"></app-pagination>
+  </div>
+
+  <div *ngIf="users?.total_count===0">
+    <p>Sorry, no results were found for "{{query}}". Try something else!</p>
+  </div>
 </div>
-<app-pagination [total]="total_pages" (paged)="onPage($event)" [current]="current_page"></app-pagination>
+
+<div *ngIf="!error && !ready" class="spinner">
+  <img src="https://assets-cdn.github.com/images/spinners/octocat-spinner-128.gif">
+</div>
+
+<div *ngIf="error">
+  Sorry, there was an error. Please go <span (click)="goBack()">back</span>.
+</div>
