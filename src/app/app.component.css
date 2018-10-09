@@ -1,12 +1,12 @@
 .app-container {
     display: flex;
     height: -webkit-fill-available;
-    height: fill-available;
+    height: stretch;
     height: 100vh;
 }
 
 .results {
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     flex-direction: column;
 }

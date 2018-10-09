@@ -3,6 +3,3 @@
   <span *ngIf="item > 0">{{item}}</span><span *ngIf="item < 0">...</span>
 </button>
 <button [disabled]="current === total" (click)="search(current+1)">Next</button>
-<p>
-  total pages: {{total}}
-</p>
